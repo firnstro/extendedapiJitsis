@@ -1,0 +1,134 @@
+
+</html>
+<html itemscope itemtype="http://schema.org/Product" prefix="og: http://ogp.me/ns#" xmlns="http://www.w3.org/1999/html">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="content-type" content="text/html;charset=utf-8">
+    </head>
+    <body>
+		
+ 
+        <script src="https://meet.jit.si/external_api.js"></script>
+        <script>
+			
+			function getUrlVars(){
+                    var vars = [], hash;
+                    var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
+                    for(var i = 0; i < hashes.length; i++)
+                    {
+                        hash = hashes[i].split('=');
+                        vars.push(hash[0]);
+                        vars[hash[0]] = hash[1];
+                    }
+                    return vars;
+                }	
+            var userID = getUrlVars()["u"]; //Parametro u le pasa el nombre del usuario en la pantalla de jitsi
+            var roomID = getUrlVars()["r"]; //parámetro r indica la room que puede abrir 			
+              			
+            var domain = "meet.jit.si";
+            if (userID != "administrador"){
+					var options = {
+						roomName:roomID, //nombre de la room
+					   // width: 800,
+					   //height: 800,
+						parentNode: undefined,
+						configOverwrite: {
+							startWithVideoMuted: true,// se inicia con el vídeo mutado. Cuando pulsen se solicita el permiso
+							disableLocalVideoFlip: true,// Se evita que puedan rotar su imagen
+							disableRemoteMute: true, //eliminamos el mutado remoto a otros participantes
+							channelLastN: 4, //solo los 4 últimos participantes que hayan hablado se visualiza. Optimiza el tráfico -1 se ven todos
+							requireDisplayName: true // no está documentado
+						},
+						interfaceConfigOverwrite: {
+							INITIAL_TOOLBAR_TIMEOUT: 10000, //Tiempo de aparición de la barra al iniciar
+							TOOLBAR_TIMEOUT: 2000,//tiempo para que desaparezca
+							TOOLBAR_ALWAYS_VISIBLE: false, //ocultamos la barra de herramientas
+							DEFAULT_REMOTE_DISPLAY_NAME: 'Intruso', //nombre con el que me ven 
+							DEFAULT_LOCAL_DISPLAY_NAME: 'yo', //nombre con el que nos vemos en la sesión
+							SHOW_JITSI_WATERMARK: false, //Quitamos la marca de agura de jitsi
+							JITSI_WATERMARK_LINK: 'https://www.steamschoolinabox.com',
+
+							
+							SHOW_WATERMARK_FOR_GUESTS: false, //ocultar marca de agua a los invitados 
+							SHOW_BRAND_WATERMARK: false,
+							BRAND_WATERMARK_LINK: '',
+							SHOW_POWERED_BY: false,
+							SHOW_DEEP_LINKING_IMAGE: false,
+							
+							APP_NAME: 'Steam school in-a-meet', //nombres que aparecen en la aplicación y en 
+							NATIVE_APP_NAME: 'Steam school in-a-meet',
+							PROVIDER_NAME: 'Steam school in-a-meet',
+							LANG_DETECTION: true, //detección de idioma
+							INVITATION_POWERED_BY: true,
+							// elementos que aparecerán en la barra de herramientas y el filmstrip
+							TOOLBAR_BUTTONS: [
+							'microphone', 'camera', 'closedcaptions', 'desktop', 'fullscreen',
+							'fodeviceselection', 'profile',  'settings', 'raisehand',
+							'videoquality', 'shortcuts',
+							 'help', 
+							],
+							HIDE_KICK_BUTTON_FOR_GUESTS: true, //invitados sin posibilidad de banear
+							filmStripOnly: false,
+							ENFORCE_NOTIFICATION_AUTO_DISMISS_TIMEOUT: 5000,
+							makeJsonParserHappy: 'even if last key had a trailing comma'
+						},
+						userInfo: {
+							email: 'email@jitsiexamplemail.com', //nombre de usuario y el email
+							displayName: userID
+						}
+					};
+				} else {
+						var options = {
+						roomName:roomID, //nombre de la room
+					   // width: 800,
+					   //height: 800,
+						parentNode: undefined,
+						configOverwrite: {
+							startWithVideoMuted: false,// se inicia con el vídeo mutado. Cuando pulsen se solicita el permiso
+							disableLocalVideoFlip: false,// Se evita que puedan rotar su imagen
+							disableRemoteMute: false, //eliminamos el mutado remoto a otros participantes
+							channelLastN: 4, //solo los 4 últimos participantes que hayan hablado se visualiza. Optimiza el tráfico -1 se ven todos
+							requireDisplayName: true // no está documentado
+						},
+						interfaceConfigOverwrite: {
+							INITIAL_TOOLBAR_TIMEOUT: 10000, //Tiempo de aparición de la barra al iniciar
+							TOOLBAR_TIMEOUT: 2000,//tiempo para que desaparezca
+							TOOLBAR_ALWAYS_VISIBLE: false, //ocultamos la barra de herramientas
+							DEFAULT_REMOTE_DISPLAY_NAME: 'Admin', //nombre con el que me ven 
+							DEFAULT_LOCAL_DISPLAY_NAME: 'Admin', //nombre con el que nos vemos en la sesión
+							SHOW_JITSI_WATERMARK: false, //Quitamos la marca de agura de jitsi
+							JITSI_WATERMARK_LINK: 'https://www.steamschoolinabox.com',
+
+							
+							SHOW_WATERMARK_FOR_GUESTS: false, //ocultar marca de agua a los invitados 
+							SHOW_BRAND_WATERMARK: false,
+							BRAND_WATERMARK_LINK: '',
+							SHOW_POWERED_BY: false,
+							SHOW_DEEP_LINKING_IMAGE: false,
+							
+							APP_NAME: 'Steam school in-a-meet', //nombres que aparecen en la aplicación y en 
+							NATIVE_APP_NAME: 'Steam school in-a-meet',
+							PROVIDER_NAME: 'Steam school in-a-meet',
+							LANG_DETECTION: true, //detección de idioma
+							INVITATION_POWERED_BY: true,
+							// elementos que aparecerán en la barra de herramientas y el filmstrip
+
+							HIDE_KICK_BUTTON_FOR_GUESTS: true, //invitados sin posibilidad de banear
+							filmStripOnly: false,
+							ENFORCE_NOTIFICATION_AUTO_DISMISS_TIMEOUT: 5000,
+							makeJsonParserHappy: 'even if last key had a trailing comma'
+						},
+						userInfo: {
+							email: 'email@jitsiexamplemail.com', //nombre de usuario y el email
+							displayName: userID
+						}
+					};				
+					
+					
+				}
+
+            var api = new JitsiMeetExternalAPI(domain, options);
+        </script>
+     
+    </body>
+</html>
